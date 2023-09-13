@@ -178,7 +178,7 @@ class CPU {
 
   playSound() {
     if (this.soundTimer > 0) {
-      this.speaker.play(440);
+      //this.speaker.play(440);
     } else {
       this.speaker.stop();
     }
