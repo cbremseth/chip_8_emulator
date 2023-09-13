@@ -3,10 +3,10 @@ import Keyboard from "./keyboard.js";
 import Speaker from "./speaker.js";
 import CPU from "./cpu.js";
 
-const renderer = new Renderer(10);
-const keyboard = new Keyboard();
-const speaker = new Speaker();
-const cpu = new CPU(renderer, keyboard, speaker);
+let renderer = new Renderer(10);
+let keyboard = new Keyboard();
+let speaker = new Speaker();
+let cpu = new CPU(renderer, keyboard, speaker);
 
 let loop;
 
@@ -17,13 +17,13 @@ let fps = 60,
   then,
   elapsed;
 
-function init() {
+function init(rom) {
   fpsInterval = 1000 / fps;
   then = Date.now();
   startTime = then;
 
   cpu.loadSpritesIntoMemory();
-  cpu.loadRom("Breakout [Carmelo Cortez, 1979].ch8");
+  cpu.loadRom(rom);
   loop = requestAnimationFrame(step);
 }
 
@@ -95,5 +95,20 @@ function displayMemoryHex() {
     }
   });
 }
+document.querySelector("#start").addEventListener("click", (event) => {
+  // Cancel existing animation frame loop
+  if (loop) {
+    cancelAnimationFrame(loop);
+  }
 
-init();
+  // Reinitialize CPU and other components
+  renderer = new Renderer(10);
+  keyboard = new Keyboard();
+  speaker = new Speaker();
+  cpu = new CPU(renderer, keyboard, speaker);
+
+  // Get the selected ROM and initialize the game
+  const selectedRom =
+    document.querySelector("#rom-select").selectedOptions[0].value;
+  init(selectedRom);
+});
