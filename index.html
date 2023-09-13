@@ -35,13 +35,16 @@
         </section>
         <section>
             <div>
+                <label for="rom-select">Game selection:</label>
                 <select name="rom-select" id="rom-select">
                     <option value="Breakout [Carmelo Cortez, 1979].ch8">Breakout</option>
-
                     <option value="Tetris [Fran Dachille, 1991].ch8">Tetris</option>
+                    <option value="Lunar Lander (Udo Pernisz, 1979).ch8">Lunar Lander</option>
+                    <option value="Space Invaders [David Winter](1).ch8">Space Invaders</option>
                 </select>
-                <button id="start">Start</button>
+                <button id="start">Load</button>
             </div>
+            <p>Control instructions: <span id="instructions">Load a game to see controls</span></p>
 
             <canvas></canvas>
         </section>

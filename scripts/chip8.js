@@ -95,6 +95,24 @@ function displayMemoryHex() {
     }
   });
 }
+
+function displayInstructions(rom) {
+  const controlsDisplay = document.querySelector("#instructions");
+  switch (rom) {
+    case "Breakout [Carmelo Cortez, 1979].ch8":
+      controlsDisplay.innerHTML = "Q: left; E: right";
+      break;
+    case "Tetris [Fran Dachille, 1991].ch8":
+      controlsDisplay.innerHTML = "Q: rotate; W: left; E: right";
+      break;
+    case "Lunar Lander (Udo Pernisz, 1979).ch8":
+      controlsDisplay.innerHTML = "2: thrust; Q: left; E: right";
+      break;
+    case "Space Invaders [David Winter](1).ch8":
+      controlsDisplay.innerHTML = "Q: left; W: shoot; E: right";
+      break;
+  }
+}
 document.querySelector("#start").addEventListener("click", (event) => {
   // Cancel existing animation frame loop
   if (loop) {
@@ -110,5 +128,6 @@ document.querySelector("#start").addEventListener("click", (event) => {
   // Get the selected ROM and initialize the game
   const selectedRom =
     document.querySelector("#rom-select").selectedOptions[0].value;
+  displayInstructions(selectedRom);
   init(selectedRom);
 });
