@@ -33,9 +33,67 @@ function step() {
 
   if (elapsed > fpsInterval) {
     cpu.cycle();
+    displayRegisterHex();
+    displayMemoryHex();
   }
 
   loop = requestAnimationFrame(step);
+}
+
+function displayRegisterHex() {
+  let field = document.querySelector("#register");
+
+  cpu.v.forEach((element, index) => {
+    const hexValue = element.toString(16).toUpperCase();
+    const registerName = "V" + index.toString(16).toUpperCase();
+    const elemId = registerName;
+
+    let existingElement = document.getElementById(elemId);
+
+    if (existingElement) {
+      // Update only if value has changed
+      const existingText = existingElement.textContent;
+      const newText = registerName + " 0x" + hexValue;
+      if (existingText !== newText) {
+        existingElement.textContent = newText;
+      }
+    } else {
+      // Element does not exist, so create it
+      const newElement = document.createElement("div");
+      newElement.className = "hex";
+      newElement.id = elemId;
+      newElement.textContent = registerName + " 0x" + hexValue;
+
+      field.appendChild(newElement);
+    }
+  });
+}
+
+function displayMemoryHex() {
+  let field = document.querySelector("#memory");
+  cpu.memory.forEach((element, index) => {
+    const hexValue = element.toString(16).toUpperCase();
+    const location = "0x" + index.toString(16).toUpperCase();
+    const elemId = location;
+
+    let existingElement = document.getElementById(location);
+    if (existingElement) {
+      // Update only if value has changed
+      const existingText = existingElement.textContent;
+      const newText = " 0x" + hexValue;
+      if (existingText !== newText) {
+        existingElement.textContent = newText;
+      }
+    } else {
+      // Element does not exist, so create it
+      const newElement = document.createElement("div");
+      newElement.className = "hex";
+      newElement.id = elemId;
+      newElement.textContent = " 0x" + hexValue;
+
+      field.appendChild(newElement);
+    }
+  });
 }
 
 init();

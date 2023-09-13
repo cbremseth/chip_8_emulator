@@ -9,7 +9,41 @@
 </head>
 
 <body>
-    <canvas></canvas>
+    <main>
+        <h1>Chip-8 Emulator</h1>
+        <section>
+            <article>
+                <h2>What is Chip-8?</h2>
+                <p>
+                    CHIP-8 is an interpreted programming language, developed by Joseph Weisbecker made on his 1802
+                    Microprocessor. It was initially used on the COSMAC VIP and Telmac 1800 8-bit microcomputers in the
+                    mid-1970s. It was made to allow video games to be more easily programmed for these computers.
+                </p>
+                <p>
+                    Read more about <a href="https://en.wikipedia.org/wiki/CHIP-8">Chip-8 on Wikipedia</a>.
+                </p>
+            </article>
+            <article>
+                <h2>What is this?</h2>
+                <p>
+                    This is a program that emulates the original Chip-8 architecture and instruction set in order to run
+                    the original programs written for the Chip-8 in the past. Each of the games you can play here were
+                    written by someone else for entirely different hardware on an entirely different system.
+                </p>
+            </article>
+
+        </section>
+        <section>
+            <canvas></canvas>
+        </section>
+        <section>
+            <p>Registers</p>
+            <div id="register"></div>
+            <p>Memory</p>
+            <div id="memory"></div>
+        </section>
+
+    </main>
     <script type="module" src="scripts/chip8.js"></script>
 </body>
 
